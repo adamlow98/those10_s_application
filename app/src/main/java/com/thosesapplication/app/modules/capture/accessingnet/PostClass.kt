@@ -2,6 +2,7 @@ package com.example.PainRate.accessingnet
 
 import android.graphics.Bitmap
 import android.icu.util.Output
+import android.util.Log
 import com.example.PainRate.model.AnalysisResult
 import com.example.PainRate.utils.JsonMapper
 import okhttp3.*
@@ -15,7 +16,7 @@ import java.net.URL
 
 class PostClass() {
     // TODO: Everytime restart server, please modify the URL link
-    private val setIP = "34.121.146.220/"
+    private val setIP = "34.28.146.245"
 
     // Send target image to assessment module
     fun clientOkHttp(FILE_IMAGE: File): String {
@@ -26,8 +27,8 @@ class PostClass() {
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("identity","20220927001")
-            .addFormDataPart("image", "photo.jpg", ProgressRequestBody("image/*".toMediaTypeOrNull(), FILE_IMAGE))
-
+            .addFormDataPart("image", "photo.jpg", ProgressRequestBody("image".toMediaTypeOrNull(), FILE_IMAGE))
+            .addFormDataPart("model_type","model3")
             .build()
 
         // Set up connection
@@ -44,12 +45,14 @@ class PostClass() {
         try{
             val response = call.execute()
             if (response.isSuccessful){
+                Log.i("PAIN RESULTS", "Response Success")
                 val recbody = response.body
                 result = recbody!!.string()
             }
             response.close()
         } catch (e:Exception){
             println(e)
+            Log.i("PAIN RESULTS", e.toString())
         }
         return result
     }
@@ -79,10 +82,12 @@ class PostClass() {
             if (response.isSuccessful){
                 val recbody = response.body
                 println(recbody!!.string())
+                Log.i("PAIN RESULTS", "RESPONSE SUCCESS")
             }
             response.close()
         } catch (e:Exception){
             println(e)
+            Log.i("PAIN RESULTS", e.toString())
         }
     }
 

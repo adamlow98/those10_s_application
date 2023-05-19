@@ -4,16 +4,20 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.FileProvider
+import com.example.PainRate.accessingnet.PostClass
+import com.example.PainRate.utils.JsonMapper
 import com.thosesapplication.app.R
 import com.thosesapplication.app.appcomponents.base.BaseActivity
 import com.thosesapplication.app.databinding.ActivityCaptureBinding
@@ -43,9 +47,12 @@ class CaptureActivity : BaseActivity<ActivityCaptureBinding>(R.layout.activity_c
   private val PERMISSION_CODE = 1000
   private val IMAGE_CAPTURE_CODE = 1001
 
+//  var vFilename: String = "example-target-frame.png"
   var vFilename: String = ""
 
   val fileLocationString: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
+//  val fileLocationString: String = "res/drawable/"
+
 
 
   override fun onInitialized(): Unit {
@@ -99,6 +106,10 @@ class CaptureActivity : BaseActivity<ActivityCaptureBinding>(R.layout.activity_c
           Toast.LENGTH_LONG).show()
       }
     }
+//    myImageView = findViewById(R.id.myImageView)
+//    myImageView.setOnClickListener {
+//
+//      }
   }
 
   private fun openCamera() {
@@ -162,7 +173,7 @@ class CaptureActivity : BaseActivity<ActivityCaptureBinding>(R.layout.activity_c
         Toast.LENGTH_LONG).show()
 
       //Uri of camera image
-      val uri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", file);
+      val uri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", file)
 //      myImageView.setImageURI(uri)
 
 //      val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
@@ -173,7 +184,25 @@ class CaptureActivity : BaseActivity<ActivityCaptureBinding>(R.layout.activity_c
 //      finish()
 
 
-      }
+      val takenImage = BitmapFactory.decodeFile(file.absolutePath)
+      val imageView = findViewById<ImageView>(R.id.myImageView)
+      imageView.setImageBitmap(takenImage)
+
+      val conn = PostClass()
+
+      val result = conn.clientOkHttp(file)
+      println(result)
+      Toast.makeText(this, result,
+      Toast.LENGTH_LONG).show()
+
+      Log.i("PAIN RESULTS", result)
+
+
+
+
+    }
+
+
     else{
       Toast.makeText(this, "Results NOT OK",
         Toast.LENGTH_LONG).show()

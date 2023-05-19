@@ -105,7 +105,7 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/img_user"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_user" />
+                        tools:src="@drawable/img_user_light_blue_600" />
 
                     <TextView
                         android:id="@+id/txtPatients"
@@ -138,7 +138,7 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/img_notification_light_blue_600"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_notification_light_blue_600" />
+                        tools:src="@drawable/img_notification" />
 
                     <TextView
                         android:id="@+id/txtNotificationOne"
