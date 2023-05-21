@@ -82,7 +82,7 @@ class Scanning : AppCompatActivity() {
             }
 
             // Sending image to assessment module
-            val path = "/sdcard/Android/data/com.example.PainRate/files/Pictures/example-target-frame.png"
+            val path = "/sdcard/Android/data/com.example.PainRate/files/Pictures/example_target_)frame.png"
             val file = File(path)
             var analysisResult: AnalysisResult? = null
             if(!file.exists()) {
@@ -112,7 +112,7 @@ class Scanning : AppCompatActivity() {
 
             // reads image from specified file to put to the ImageView
             // val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
-            val path = "/sdcard/Android/data/com.example.PainRate/files/Pictures/example-target-frame.png"
+            val path = "/sdcard/Android/data/com.example.PainRate/files/Pictures/example_target_)frame.png"
             val file = File(path)
             val takenImage = BitmapFactory.decodeFile(file.absolutePath)
             val imageView = findViewById<ImageView>(R.id.imgvwPhoto)

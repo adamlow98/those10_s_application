@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.FileProvider
@@ -26,6 +27,7 @@ import com.thosesapplication.app.modules.mainpage.ui.MainPageActivity
 import com.thosesapplication.app.modules.menu.ui.MenuActivity
 import com.thosesapplication.app.modules.notification.ui.NotificationActivity
 import com.thosesapplication.app.modules.patients.ui.PatientsActivity
+import org.w3c.dom.Text
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,7 +49,9 @@ class CaptureActivity : BaseActivity<ActivityCaptureBinding>(R.layout.activity_c
   private val PERMISSION_CODE = 1000
   private val IMAGE_CAPTURE_CODE = 1001
 
-//  var vFilename: String = "example-target-frame.png"
+  private lateinit var painText: TextView
+
+//  var vFilename: String = "example_target_)frame.png"
   var vFilename: String = ""
 
   val fileLocationString: String = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
@@ -197,8 +201,14 @@ class CaptureActivity : BaseActivity<ActivityCaptureBinding>(R.layout.activity_c
 
       Log.i("PAIN RESULTS", result)
 
+      // This is a test line to show example of result
+
+      val resultTest = 3.2
 
 
+      painText = findViewById(R.id.textView)
+      painText.text = ("Pain Rate: " + resultTest)
+      painText.visibility = View.VISIBLE
 
     }
 

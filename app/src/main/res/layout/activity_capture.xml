@@ -217,6 +217,16 @@
                     android:background="@drawable/rectangle_bg_white_a700_radius_30" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:gravity="center"
+                android:text="PAIN RATE: "
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:visibility="invisible" />
+
         </LinearLayout>
 
         <FrameLayout
@@ -225,8 +235,8 @@
             android:layout_width="fill_parent"
             android:layout_height="62dp"
             android:layout_gravity="end"
-            android:foregroundGravity="bottom"
-            android:layout_marginTop="@dimen/_80pxv">
+            android:layout_marginTop="@dimen/_40pxv"
+            android:foregroundGravity="bottom">
 
 
             <LinearLayout
